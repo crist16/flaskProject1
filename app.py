@@ -78,7 +78,7 @@ def exportarProsecicion():
     valores["yearExpedicion"] = fechaActual["year"]
     name_file = generarPdf(valores)
     print(name_file)
-    return "received"
+    return "receivedd"
 
 @app.get(f"/constancia/prosecucion/<name_file>")
 def download_file(name_file):
