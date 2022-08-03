@@ -67,7 +67,7 @@ def hello_world():  # put application's code here
 
 @app.post(f"/constancia/prosecucion")
 def exportarProsecicion():
-    deleteOutputFiles()
+    #deleteOutputFiles()
     fechaActual = obtenerFechaActual()
    # print(fechaActual)
 
