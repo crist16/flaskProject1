@@ -1,7 +1,7 @@
 from flask import Flask, send_from_directory,request
 from Helpers.helper import generarPdf
 from os import getcwd
-import os
+
 from datetime import datetime
 
 mesesDic = {
@@ -36,11 +36,6 @@ content = {
 
 }
 
-def deleteOutputFiles():
-    files = os.listdir("Outputs")
-    print("Deleting")
-    for f in files:
-        os.remove("Outputs/" + f)
 
 def obtenerFechaActual():
     fecha = datetime.now()
@@ -67,7 +62,7 @@ def hello_world():  # put application's code here
 
 @app.post(f"/constancia/prosecucion")
 def exportarProsecicion():
-    deleteOutputFiles()
+
     fechaActual = obtenerFechaActual()
    # print(fechaActual)
 
