@@ -78,8 +78,8 @@ def exportarProsecicion():
 @app.get(f"/download/<name_file>")
 def download_file(name_file):
 
-    #return send_from_directory(PATH_FILE_OUTPUT,path=name_file, as_attachment=True)
-    return  "received"
+    return send_from_directory(PATH_FILE_OUTPUT,path=name_file, as_attachment=True)
+
 
 if __name__ == '__main__':
     app.run()
