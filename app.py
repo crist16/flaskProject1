@@ -54,7 +54,7 @@ def exportarProsecucion():
             valores["mesNacimiento"] = mesesDic[mes]
            
     name_file = generarPdf(valores)
-    return valores["mesNacimiento"]
+    return "received"
 
 @app.get(f"/download/<name_file>")
 def download_file(name_file):
