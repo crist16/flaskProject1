@@ -49,6 +49,7 @@ def exportarProsecucion():
     valores["diaExpedicion"] = fechaActual["dia"]
     valores["mesExpedicion"] = fechaActual["mes"]
     valores["yearExpedicion"] = fechaActual["year"]
+    print(valores)
     for mes in  mesesDic:
         if mes == valores["mesNacimiento"]:
             valores["mesNacimiento"] = mesesDic[mes]
