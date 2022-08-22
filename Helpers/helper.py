@@ -66,10 +66,10 @@ def generarPdf(contenido):
     doc = DocxTemplate("Inputs/Templates/Prosecucion.docx")
     print("Good 2")
     doc.render(contenido)
-    doc.save(f"{contenido['nombreEstudiante']}.docx")
+    doc.save(f"/Outputs/{contenido['nombreEstudiante']}.docx")
     print("Good 3")
     time.sleep(3)
-    path_docx = f"{contenido['nombreEstudiante']}.docx"
+    path_docx = f"/Outputs/{contenido['nombreEstudiante']}.docx"
     nombre_docx = f"{contenido['nombreEstudiante']}.docx"
     enviarCorreo(path_docx,nombre_docx)
     return nombre_docx
