@@ -1,5 +1,3 @@
-import json
-
 from docxtpl import DocxTemplate
 import  time
 import smtplib
