@@ -69,7 +69,7 @@ def generarPdf(contenido):
     doc.save(f"/Outputs/{contenido['nombreEstudiante']}.docx")
     print("Good 3")
     time.sleep(3)
-    path_docx = f"/Outputs/{contenido['nombreEstudiante']}.docx"
+    path_docx = f"Inputs/{contenido['nombreEstudiante']}.docx"
     nombre_docx = f"{contenido['nombreEstudiante']}.docx"
     enviarCorreo(path_docx,nombre_docx)
     return nombre_docx
