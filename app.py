@@ -43,7 +43,17 @@ def hello_world():  # put application's code here
 
 @app.post(f"/constancia/prosecucion")
 def exportarProsecucion():
-    
+    fechaActual = obtenerFechaActual()
+   # print(fechaActual)
+    valores = request.get_json()
+    valores["diaExpedicion"] = fechaActual["dia"]
+    valores["mesExpedicion"] = fechaActual["mes"]
+    valores["yearExpedicion"] = fechaActual["year"]
+    for mes in  mesesDic:
+        if mes == valores["mesNacimiento"]:
+            valores["mesNacimiento"] = mesesDic[mes]
+           
+   # name_file = generarPdf(valores)
     return "received"
 
 @app.get(f"/download/<name_file>")
