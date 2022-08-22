@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
 import pandas as pd
-from os import getcwd
+
 
 def enviarCorreo(path_name, file_name):
 
@@ -66,7 +66,7 @@ def generarPdf(contenido):
     doc = DocxTemplate("Inputs/Templates/Prosecucion.docx")
     print("Good 2")
     doc.render(contenido)
-    doc.save(f"{getcwd()}/Outputs/{contenido['nombreEstudiante']}.docx")
+    doc.save(f"Outputs/{contenido['nombreEstudiante']}.docx")
     print("Good 3")
     time.sleep(3)
     path_docx = f"Outputs/{contenido['nombreEstudiante']}.docx"
