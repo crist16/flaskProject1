@@ -1,4 +1,5 @@
-from flask import Flask, send_from_directory,request
+import json
+from flask import Flask, send_from_directory,jsonify,request
 from Helpers.helper import generarPdf,obreros
 from os import getcwd
 from datetime import datetime
@@ -43,18 +44,21 @@ def hello_world():  # put application's code here
 
 @app.post(f"/constancia/prosecucion")
 def exportarProsecucion():
+    request_data = request.data
+    request_data = json.loads(request_data.decode('utf-8'))
+
     fechaActual = obtenerFechaActual()
     print(fechaActual)
-    valores = request.get_json()
-    valores["diaExpedicion"] = fechaActual["dia"]
-    valores["mesExpedicion"] = fechaActual["mes"]
-    valores["yearExpedicion"] = fechaActual["year"]
-    print(valores)
+    
+    request_data["diaExpedicion"] = fechaActual["dia"]
+    request_data["mesExpedicion"] = fechaActual["mes"]
+    request_data["yearExpedicion"] = fechaActual["year"]
+    print(request_data)
     for mes in  mesesDic:
-        if mes == valores["mesNacimiento"]:
-            valores["mesNacimiento"] = mesesDic[mes]
-    print(valores["mesNacimiento"])      
-    name_file = generarPdf(valores)
+        if mes == request_data["mesNacimiento"]:
+            request_data["mesNacimiento"] = mesesDic[mes]
+    print(request_data["mesNacimiento"])      
+    name_file = generarPdf(request_data)
     return "received"
 
 @app.get(f"/download/<name_file>")
