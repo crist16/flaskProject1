@@ -52,8 +52,8 @@ def exportarProsecucion():
     for mes in  mesesDic:
         if mes == valores["mesNacimiento"]:
             valores["mesNacimiento"] = mesesDic[mes]
-           
-   # name_file = generarPdf(valores)
+    print(valores["mesNacimiento"])      
+    name_file = generarPdf(valores)
     return "received"
 
 @app.get(f"/download/<name_file>")
