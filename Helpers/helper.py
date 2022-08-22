@@ -61,9 +61,12 @@ def enviarCorreo(path_name, file_name):
     sesion_smtp.quit()
 
 def generarPdf(contenido):
+    print("Good 1")
     doc = DocxTemplate("Inputs/Templates/Prosecucion.docx")
+    print("Good 2")
     doc.render(contenido)
     doc.save(f"Outputs/{contenido['nombreEstudiante']}.docx")
+    print("Good 3")
     time.sleep(3)
     path_docx = f"Outputs/{contenido['nombreEstudiante']}.docx"
     nombre_docx = f"{contenido['nombreEstudiante']}.docx"
