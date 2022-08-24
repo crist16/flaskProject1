@@ -44,9 +44,9 @@ def hello_world():  # put application's code here
 
 @app.post(f"/constancia/prosecucion")
 def exportarProsecucion():
-    request_data = request.data
-    request_data = json.loads(request_data.decode('utf-8'))
-
+    #request_data = request.data
+    #request_data = json.loads(request_data.decode('utf-8'))
+    request_data = request.json
     fechaActual = obtenerFechaActual()
     print(fechaActual)
     
