@@ -8,18 +8,18 @@ from email import encoders
 import pandas as pd
 from os import getcwd
 
-def enviarCorreo(path_name, file_name):
+def enviarCorreo(path_name, file_name,direccioDeCorreo):
 
     # Para configurar gmail y poder enviar correos hay que setear 2 verification y crear una custom app en la cuenta de google
     # Iniciamos los parámetros del script
     remitente = "bolivariano.automated@gmail.com"
     my_pass = "rnguutslnoexyetr"
-    destinatarios = "cristobalnegocio@gmail.com"
+    destinatarios = direccioDeCorreo
     asunto = '[RPI] Correo de prueba'
     cuerpo = 'Este es el contenido del mensaje'
     ruta_adjunto = path_name
     nombre_adjunto = file_name
-
+    print(direccioDeCorreo)
     em = MIMEMultipart()
     em['From'] = remitente
     em['To'] = destinatarios
@@ -66,12 +66,12 @@ def generarPdf(contenido):
     doc = DocxTemplate("Inputs/Templates/Prosecucion.docx")
     print("Good 2")
     doc.render(contenido)
-    doc.save("Outputs/"+contenido['nombreEstudiante']+".docx")
+    doc.save(contenido['nombreEstudiante']+".docx")
     print("Good 3")
     time.sleep(3)
-    path_docx = f"Outputs/{contenido['nombreEstudiante']}.docx"
+    path_docx = f"{contenido['nombreEstudiante']}.docx"
     nombre_docx = f"{contenido['nombreEstudiante']}.docx"
-    enviarCorreo(path_docx,nombre_docx)
+    enviarCorreo(path_docx,nombre_docx,contenido['correo'])
     return nombre_docx
 
 def obreros():

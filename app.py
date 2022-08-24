@@ -5,7 +5,7 @@ from os import getcwd
 from datetime import datetime
 
 
-PATH_FILE_OUTPUT = getcwd() + "/Outputs"
+PATH_FILE_OUTPUT = getcwd() + "/"
 mesesDic = {
     "01":'ENERO',
     "02":'FEBRERO',
