@@ -46,20 +46,25 @@ def hello_world():  # put application's code here
 def exportarProsecucion():
     #request_data = request.data
     #request_data = json.loads(request_data.decode('utf-8'))
-    request_data = request.json
-    fechaActual = obtenerFechaActual()
-    print(fechaActual)
+    try:
+        #request_data = request.json
+        request_data = request.data
+        request_data = json.loads(request_data.decode('utf-8'))
+        fechaActual = obtenerFechaActual()
+        print(fechaActual)
     
-    request_data["diaExpedicion"] = fechaActual["dia"]
-    request_data["mesExpedicion"] = fechaActual["mes"]
-    request_data["yearExpedicion"] = fechaActual["year"]
-    print(request_data)
-    for mes in  mesesDic:
-        if mes == request_data["mesNacimiento"]:
-            request_data["mesNacimiento"] = mesesDic[mes]
-    print(request_data["mesNacimiento"])      
-    name_file = generarPdf(request_data)
-    return "received"
+        request_data["diaExpedicion"] = fechaActual["dia"]
+        request_data["mesExpedicion"] = fechaActual["mes"]
+        request_data["yearExpedicion"] = fechaActual["year"]
+        print(request_data)
+        for mes in  mesesDic:
+            if mes == request_data["mesNacimiento"]:
+                request_data["mesNacimiento"] = mesesDic[mes]
+        print(request_data["mesNacimiento"])      
+        name_file = generarPdf(request_data)
+        return "received"
+    except:
+        return "Hubo un error al procesar la informacion"
 
 @app.get(f"/download/<name_file>")
 def download_file(name_file):
