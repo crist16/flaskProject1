@@ -68,7 +68,11 @@ def exportarProsecucion():
 
 @app.get(f"/download/<name_file>")
 def download_file(name_file):
-    return send_from_directory(PATH_FILE_OUTPUT,path=name_file, as_attachment=True)
+    try:
+        return send_from_directory(PATH_FILE_OUTPUT,path=name_file, as_attachment=True)
+    except: 
+        print("no se pudo procesar")
+        return "Imposible procesar"
 
 @app.get(f"/trabajadores/obreros")
 def obrero_data():
