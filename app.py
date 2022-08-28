@@ -61,7 +61,7 @@ def exportarProsecucion():
             if mes == request_data["mesNacimiento"]:
                 request_data["mesNacimiento"] = mesesDic[mes]
          
-        name_file = generarPdf(request_data)
+        name_file = generarPdf(request_data,"Prosecucion")
         return "received"
     except:
         return "Hubo un error al procesar la informacion"

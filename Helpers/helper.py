@@ -61,9 +61,9 @@ def enviarCorreo(path_name, file_name,direccioDeCorreo):
     # Cerramos la conexión
     sesion_smtp.quit()
 
-def generarPdf(contenido):
+def generarPdf(contenido,templateName):
     print("Good 1")
-    doc = DocxTemplate("Inputs/Templates/Prosecucion.docx")
+    doc = DocxTemplate(f"Inputs/Templates/{templateName}.docx")
     print("Good 2")
     doc.render(contenido)
     doc.save(contenido['nombreEstudiante']+".docx")
@@ -73,6 +73,10 @@ def generarPdf(contenido):
     nombre_docx = f"{contenido['nombreEstudiante']}.docx"
     enviarCorreo(path_docx,nombre_docx,contenido['correo'])
     return nombre_docx
+
+
+
+
 
 def obreros():
     obreros = pd.read_csv("Inputs/Trabajadores/PersonalParaCuadraturaObreros.csv")
