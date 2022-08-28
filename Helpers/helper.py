@@ -62,20 +62,40 @@ def enviarCorreo(path_name, file_name,direccioDeCorreo):
     sesion_smtp.quit()
 
 def generarPdf(contenido,templateName):
-    print("Good 1")
-    doc = DocxTemplate(f"Inputs/Templates/{templateName}.docx")
-    print("Good 2")
-    doc.render(contenido)
-    doc.save(contenido['nombreEstudiante']+".docx")
-    print("Good 3")
-    time.sleep(3)
-    path_docx = f"{contenido['nombreEstudiante']}.docx"
-    nombre_docx = f"{contenido['nombreEstudiante']}.docx"
-    enviarCorreo(path_docx,nombre_docx,contenido['correo'])
-    return nombre_docx
+    switch(templateName=templateName,contenido=contenido)
+
+    
+
+    
 
 
+def switch(templateName,contenido):
+    if templateName == "Prosecucion":
+        doc = DocxTemplate(f"Inputs/Templates/{templateName}.docx")
 
+        doc.render(contenido)
+        doc.save(contenido['nombreEstudiante']+".docx")
+    
+        time.sleep(3)
+        path_docx = f"{contenido['nombreEstudiante']}.docx"
+        nombre_docx = f"{contenido['nombreEstudiante']}.docx"
+        enviarCorreo(path_docx,nombre_docx,contenido['correo'])
+        return nombre_docx
+        
+    elif templateName == "constanciaTrabajo":
+        print("Generando Trabajo")
+        doc = DocxTemplate(f"Inputs/Templates/{templateName}.docx")
+
+        doc.render(contenido)
+        doc.save(contenido['nombrePersona']+".docx")
+        print("Generando Trabajo 2")
+        time.sleep(3)
+        path_docx = f"{contenido['nombrePersona']}.docx"
+        nombre_docx = f"{contenido['nombrePersona']}.docx"
+        print("Generando Trabajo 3")
+        enviarCorreo(path_docx,nombre_docx,contenido['correo'])
+        return nombre_docx
+    
 
 
 def obreros():

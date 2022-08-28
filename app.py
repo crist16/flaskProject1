@@ -41,6 +41,27 @@ app = Flask(__name__)
 def hello_world():  # put application's code here
     return 'Hello World '
 
+def ProcesarFechaActual(request_data, fechaActual):
+   
+    request_data["diaExpedicion"] = fechaActual["dia"]
+    request_data["mesExpedicion"] = fechaActual["mes"]
+    request_data["yearExpedicion"] = fechaActual["year"]
+    
+    if "mesNacimiento" in request_data:
+        print("Procesando Fecha Actual")
+        for mes in  mesesDic:
+            if mes == request_data["mesNacimiento"]:
+                request_data["mesNacimiento"] = mesesDic[mes]
+    else: 
+        print("No existe el campo mesNacimiento ")
+
+def ObtenerDatosPost():
+    request_data = request.data
+    
+   
+    request_data = json.loads(request_data.decode('utf-8'))
+ 
+    return request_data
 
 @app.post(f"/constancia/prosecucion")
 def exportarProsecucion():
@@ -48,23 +69,15 @@ def exportarProsecucion():
     #request_data = json.loads(request_data.decode('utf-8'))
     try:
         #request_data = request.json
-        request_data = request.data
-        request_data = json.loads(request_data.decode('utf-8'))
-        fechaActual = obtenerFechaActual()
-        print(fechaActual)
-    
-        request_data["diaExpedicion"] = fechaActual["dia"]
-        request_data["mesExpedicion"] = fechaActual["mes"]
-        request_data["yearExpedicion"] = fechaActual["year"]
-        print(request_data)
-        for mes in  mesesDic:
-            if mes == request_data["mesNacimiento"]:
-                request_data["mesNacimiento"] = mesesDic[mes]
-         
-        name_file = generarPdf(request_data,"Prosecucion")
+        request_data = ObtenerDatosPost()
+        fechaActual = obtenerFechaActual()    
+        ProcesarFechaActual(request_data, fechaActual)         
+        generarPdf(request_data,"Prosecucion")
         return "received"
     except:
-        return "Hubo un error al procesar la informacion"
+        return "No se pudo procesar la información pruebe su conexion a internet o el correo destinatario"
+
+
 
 @app.get(f"/download/prosecucion/<name_file>")
 def download_file(name_file):
@@ -73,6 +86,23 @@ def download_file(name_file):
     except: 
         print("no se pudo procesar")
         return "Imposible procesar"
+
+
+
+@app.post(f"/constancia/constanciaTrabajo")
+def exportarConstanciaDeTrabajo():
+    print("Executed")
+    try:
+        request_data = ObtenerDatosPost()     
+        print(request_data)
+        fechaActual = obtenerFechaActual()
+        print(fechaActual)
+        ProcesarFechaActual(request_data=request_data,fechaActual=fechaActual)
+        generarPdf(contenido=request_data,templateName="constanciaTrabajo")
+        return f'Constancia Enviada al correo {request_data["correo"]}'
+    except: 
+        return "No se pudo procesar la información pruebe su conexion a internet o el correo destinatario"
+
 
 @app.get(f"/trabajadores/obreros")
 def obrero_data():
