@@ -66,7 +66,7 @@ def exportarProsecucion():
     except:
         return "Hubo un error al procesar la informacion"
 
-@app.get(f"/download/<name_file>")
+@app.get(f"/download/prosecucion/<name_file>")
 def download_file(name_file):
     try:
         return send_from_directory(PATH_FILE_OUTPUT,path=name_file, as_attachment=True)
