@@ -88,7 +88,7 @@ def download_file(name_file):
         return "Imposible procesar"
 
 @app.get(f"/download/constancia/<name_file>")
-def download_file(name_file):
+def download_constancia(name_file):
     try:
         return send_from_directory(PATH_FILE_OUTPUT,path=name_file, as_attachment=True)
     except: 
