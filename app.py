@@ -42,8 +42,7 @@ def obtenerFechaActual():
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = 'mongodb+srv://crist16:torres@cluster0.rwiri.mongodb.net/escuela?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true'
-mongo = PyMongo(app)
+
 
 
 @app.route('/')
@@ -126,11 +125,9 @@ def exportarConstanciaDeTrabajo():
 
 @app.get(f"/trabajadores/obrero")
 def get_administrativo_data():
+    return "nada"
   
-    obreros = obreros = mongo.db.Obrero.find()
-    response = json_util.dumps(obreros)
-    print(response)
-    return "received"
+ 
     
      
 
