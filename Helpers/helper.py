@@ -100,8 +100,6 @@ def switch(templateName,contenido):
 
 def obreros():
     obreros = pd.read_csv("Inputs/Trabajadores/PersonalParaCuadraturaObreros.csv")
-
-    print(obreros["APELLIDOS Y NOMBRES"])
-    apellidos_y_nombres = obreros["EDAD"]
-    print(apellidos_y_nombres)
-    return apellidos_y_nombres
+    print(obreros)
+   
+    

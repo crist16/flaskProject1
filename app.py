@@ -1,8 +1,13 @@
 import json
-from flask import Flask, send_from_directory,jsonify,request
+import mimetypes
+from flask import Flask, send_from_directory,jsonify,Response
+import requests
 from Helpers.helper import generarPdf,obreros
 from os import getcwd
 from datetime import datetime
+from flask import Flask
+from flask_pymongo import PyMongo
+from bson import json_util
 
 
 PATH_FILE_OUTPUT = getcwd() + "/"
@@ -37,9 +42,16 @@ def obtenerFechaActual():
 
 app = Flask(__name__)
 
+app.config["MONGO_URI"] = 'mongodb+srv://crist16:torres@cluster0.rwiri.mongodb.net/escuela?authSource=admin&replicaSet=Cluster0-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true'
+mongo = PyMongo(app)
+
+
 @app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World '
+def hello_world(): 
+    
+    return "Hello world"
+    
+    
 
 def ProcesarFechaActual(request_data, fechaActual):
    
@@ -112,13 +124,18 @@ def exportarConstanciaDeTrabajo():
         return "No se pudo procesar la información pruebe su conexion a internet o el correo destinatario"
 
 
-@app.get(f"/trabajadores/obreros")
-def obrero_data():
-
-    return obreros()
+@app.get(f"/trabajadores/obrero")
+def get_administrativo_data():
+  
+    obreros = obreros = mongo.db.Obrero.find()
+    response = json_util.dumps(obreros)
+    return response
+    
+     
 
 if __name__ == '__main__':
     app.run()
-
-
+    
+    
+    
 
