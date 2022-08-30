@@ -129,7 +129,8 @@ def get_administrativo_data():
   
     obreros = obreros = mongo.db.Obrero.find()
     response = json_util.dumps(obreros)
-    return response
+    print(response)
+    return "received"
     
      
 
