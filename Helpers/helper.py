@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import pandas as pd
+
 from os import getcwd
 
 def enviarCorreo(path_name, file_name,direccioDeCorreo):
@@ -98,8 +98,5 @@ def switch(templateName,contenido):
     
 
 
-def obreros():
-    obreros = pd.read_csv("Inputs/Trabajadores/PersonalParaCuadraturaObreros.csv")
-    print(obreros)
-   
+
     
