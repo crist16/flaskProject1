@@ -2,7 +2,7 @@ import json
 import mimetypes
 from flask import Flask, send_from_directory,jsonify,Response,request
 import requests
-from Helpers.helper import generarPdf,obreros
+from Helpers.helper import generarPdf
 from os import getcwd
 from datetime import datetime
 import os
