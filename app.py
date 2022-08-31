@@ -5,7 +5,10 @@ import requests
 from Helpers.helper import generarPdf,obreros
 from os import getcwd
 from datetime import datetime
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 
 
@@ -46,7 +49,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world(): 
-    
+    print(os.getenv("PYTHON_VERSION"))
     return "Hello world"
     
     
@@ -121,10 +124,7 @@ def exportarConstanciaDeTrabajo():
     except: 
         return "No se pudo procesar la información pruebe su conexion a internet o el correo destinatario"
 
-
-  
- 
-    
+   
      
 
 if __name__ == '__main__':
