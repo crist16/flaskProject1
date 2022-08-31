@@ -43,7 +43,7 @@ def obtenerFechaActual():
     return fechaCompletaDeHoy
 
 app = Flask(__name__)
-app.config["PYTHON_VERSION"] = "3.9.10"
+app.config["PYTHON_VERSION"] = 3.9
 
 
 
