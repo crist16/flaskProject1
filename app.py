@@ -1,6 +1,6 @@
 import json
 import mimetypes
-from flask import Flask, send_from_directory,jsonify,Response
+from flask import Flask, send_from_directory,jsonify,Response,request
 import requests
 from Helpers.helper import generarPdf,obreros
 from os import getcwd
