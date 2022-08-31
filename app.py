@@ -41,7 +41,7 @@ def obtenerFechaActual():
         if mes == mesHoy:
             fechaCompletaDeHoy["mes"] = mesesDic[mes]
     return fechaCompletaDeHoy
-print("Hello")
+
 app = Flask(__name__)
 
 
