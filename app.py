@@ -5,9 +5,8 @@ import requests
 from Helpers.helper import generarPdf,obreros
 from os import getcwd
 from datetime import datetime
-from flask import Flask
-from flask_pymongo import PyMongo
-from bson import json_util
+
+
 
 
 PATH_FILE_OUTPUT = getcwd() + "/"
@@ -123,9 +122,6 @@ def exportarConstanciaDeTrabajo():
         return "No se pudo procesar la información pruebe su conexion a internet o el correo destinatario"
 
 
-@app.get(f"/trabajadores/obrero")
-def get_administrativo_data():
-    return "nada"
   
  
     
