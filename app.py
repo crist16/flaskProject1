@@ -6,9 +6,7 @@ from Helpers.helper import generarPdf
 from os import getcwd
 from datetime import datetime
 import os
-from dotenv import load_dotenv
 
-load_dotenv()
 
 
 
