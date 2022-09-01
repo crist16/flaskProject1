@@ -1,13 +1,15 @@
 import json
 import mimetypes
+from urllib import response
 from flask import Flask, send_from_directory,jsonify,Response,request
 import requests
 from Helpers.helper import generarPdf
 from os import getcwd
 from datetime import datetime
 import os
-
-
+import pandas
+from flask_pymongo import PyMongo
+from bson import json_util
 
 
 PATH_FILE_OUTPUT = getcwd() + "/"
@@ -41,14 +43,17 @@ def obtenerFechaActual():
     return fechaCompletaDeHoy
 
 app = Flask(__name__)
-app.config["PYTHON_VERSION"] = 3.9
+
+app.config["MONGO_URI"] = "mongodb+srv://crist16:torres@cluster0.rwiri.mongodb.net/escuela"
+mongo = PyMongo(app)
 
 
 
 
 @app.route('/')
 def hello_world(): 
-    print(os.getenv("PYTHON_VERSION"))
+    
+   
     return "Hello world"
     
     
@@ -123,8 +128,12 @@ def exportarConstanciaDeTrabajo():
     except: 
         return "No se pudo procesar la información pruebe su conexion a internet o el correo destinatario"
 
-   
-     
+@app.get(f"/trabajadores")
+def getTrabajadores():
+    trabajadoresBson = mongo.db.Trabajadores.find()
+    response = json_util.dumps(trabajadoresBson)
+    print(response)
+    return Response(response, mimetype="application/json")
 
 if __name__ == '__main__':
     app.run()
