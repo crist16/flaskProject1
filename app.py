@@ -7,7 +7,7 @@ from Helpers.helper import generarPdf
 from os import getcwd
 from datetime import datetime
 import os
-import pandas as pd
+
 from flask_pymongo import PyMongo
 from bson import json_util
 
